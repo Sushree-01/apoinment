@@ -3,18 +3,19 @@ const connection=require("./config/db");
 const {userRouter}=require("./route/user.Route");
 const {doctorRouter}=require("./route/doctor.Route")
 const {authentication}=require("./middleware/auth.midleware");
+const cors=require("cors");
 
 require("dotenv").config();
-const cors=require("cors");
+// const cors=require("cors");
 const app=express();
-app.use(cors());
+// app.use(cors());
 const port=process.env.port||8080;
 
-app.use(cors());
+// app.use(cors());
 app.get("/",(req,res)=>{
     res.send("Welcome to home page of doctors backend")
 })
-
+app.use(cors());
 app.use("/user",userRouter);
 app.use("/appoinments",doctorRouter);
 app.listen(port,async()=>{
